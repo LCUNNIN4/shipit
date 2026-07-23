@@ -19,7 +19,8 @@ var app = builder.Build();
 static string Region() => Environment.GetEnvironmentVariable("SHIPIT_REGION") ?? "local";
 static string BannerColor() => Environment.GetEnvironmentVariable("SHIPIT_BANNER_COLOR") ?? "green";
 static string AppVersion() => Environment.GetEnvironmentVariable("SHIPIT_VERSION") ?? "0.1.0-dev";
-static bool IsReady() => false;
+static bool IsReady() =>
+  !string.Equals(Environment.GetEnvironmentVariable("SHIPIT_READY"), "false", StringComparison.OrdinalIgnoreCase);
 
 // Liveness: the process is up. Never gated, so a live pod is not killed by config.
 app.MapGet("/healthz", () => Results.Text("OK", "text/plain"));
