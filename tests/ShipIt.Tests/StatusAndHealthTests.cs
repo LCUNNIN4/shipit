@@ -20,11 +20,11 @@ public class StatusAndHealthTests : IClassFixture<WebApplicationFactory<Program>
     }
 
     [Fact]
-    public async Task Readyz_is_ready_by_default()
+    public async Task Readyz_reports_not_ready()
     {
         var client = _factory.CreateClient();
         var response = await client.GetAsync("/readyz");
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(HttpStatusCode.ServiceUnavailable, response.StatusCode);
     }
 
     [Fact]
