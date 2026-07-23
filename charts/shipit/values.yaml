@@ -1,0 +1,7 @@
+image:
+  repo: shipitlcacr.azurecr.io/shipit
+  tag: latest
+replicas: 3
+config:
+  region: eastus
+  bannerColor: green
